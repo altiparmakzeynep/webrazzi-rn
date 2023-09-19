@@ -1,10 +1,19 @@
-import { Image, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { 
+  Image, 
+  SafeAreaView,
+  ScrollView, 
+  StyleSheet, 
+  Text, 
+  View,
+  ActivityIndicator 
+} from 'react-native'
 import React, { useEffect } from 'react'
 import { RootStackParams } from '../../../App';
 import { RouteProp } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNewsDetail } from '../../actions/newsDetailAction';
 import { PhoneHeight, PhoneWidth } from '../../config';
+import Header from '../../components/Header/Header';
 
 type NewsDetailScreenRouteProp = RouteProp<RootStackParams, 'NewsDetail'>;
 
@@ -16,35 +25,35 @@ const NewsDetail: React.FC<Props> = ({route}) => {
 
   const itemId: number = route.params.itemId
   const dispatch = useDispatch();  
-  const { newsDetail } = useSelector((state: any) => state.newsDetailReducer);
+  const {newsDetail}  = useSelector((state: any) => state.newsDetailReducer);
 
-  console.log("anan", newsDetail)
-
-  useEffect(() => {
-    dispatch(fetchNewsDetail(itemId) as any)
-  },[])
-
+  // console.log("anan", newsDetail)
+  if(newsDetail.length == 0){
+    return(
+      <ActivityIndicator style = {{width: 50, height: 50, alignSelf: "center"}}/>
+    )
+  }
   return (
     <SafeAreaView style = {styles.container}>
+      <Header isBack={true}/>
       <ScrollView>
-        <Text style = {styles.categoriesText}>{newsDetail.categories[0]?.title}</Text>
-        <Text style = {styles.headerText}>{newsDetail.title}</Text>
-        <Text style = {styles.summaryText}>{newsDetail.summary}</Text>
+        <Text style = {styles.categoriesText}>{newsDetail?.categories[0]?.title}</Text>
+        <Text style = {styles.headerText}>{newsDetail?.title}</Text>
+        <Text style = {styles.summaryText}>{newsDetail?.summary}</Text>
         
         <View style = {styles.authorInfoView}>
           <View style = {styles.authorImgView}>
             <Image 
               style = {styles.authorImg}
-              source={{uri: newsDetail.author.avatar}}/>
+              source={{uri: newsDetail?.author?.avatar}}/>
           </View>
-          <Text style = {styles.authorText}>{newsDetail.author.full_name}</Text>
+          <Text style = {styles.authorText}>{newsDetail?.author?.full_name}</Text>
         </View>
         <Image 
           style = {{width: PhoneWidth * 0.95, height: PhoneHeight * 0.2, alignSelf: "center", borderRadius: 10}}
-          source = {{uri: newsDetail.thumbnails.full.url}}
+          source = {{uri: newsDetail?.thumbnails?.full.url}}
         />
-        <Text style = {styles.contentText}>{newsDetail.content.replace(/<\/?[^>]+(>|$)/g, "")}</Text>
-        <View style = {{height: 300}}/>
+        <Text style = {styles.contentText}>{newsDetail?.content.replace(/<\/?[^>]+(>|$)/g, "")}</Text>
       </ScrollView>
     </SafeAreaView>
   )

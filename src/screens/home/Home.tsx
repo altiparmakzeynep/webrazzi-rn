@@ -5,16 +5,19 @@ import {
     SafeAreaView,
     FlatList,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    TextInput
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { fetchNews } from '../../actions/homeAction';
+import { fetchNewsDetail } from '../../actions/newsDetailAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { NewsItem } from '../../reducers/homeReducer';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../App';
 import { PhoneHeight, PhoneWidth } from '../../config';
+import Header from '../../components/Header/Header';
 
 const Home = () => {
 
@@ -162,22 +165,25 @@ const Home = () => {
     //         }
     //         }
     // ];
-    
+    const onFetchNewsDetail = (itemId: number) => {
+        navigation.navigate("NewsDetail", {itemId: itemId})
+        dispatch(fetchNewsDetail(itemId) as any)
+    }
     const renderItem = ({ item }: { item: NewsItem }) => {
         return(
             <TouchableOpacity 
-                style = {styles.newsContainer}
-                onPress={() => navigation.navigate("NewsDetail", {itemId: item.id})}>
+                style = {styles.newsView}
+                onPress={() => onFetchNewsDetail(item.id)}>
                 <Image 
                     style = {styles.img}
                     source={{uri: item.thumbnails.full.url}}/>
                 <View style = {styles.categoriesView}>
                     <View style = {{width: 25, height: 5, backgroundColor: "#f3d02e"}}></View>
                     <Text style = {styles.categoriesText}>{item.categories[0].title}</Text>
-
                 </View>
-                
                 <Text style = {styles.headerText}>{item.title}</Text>
+                <Text style = {styles.excerptText}>{item.excerpt}</Text>
+
                 <View style = {styles.authorInfoView}>
                     <Text style = {styles.authorText}>{item.author.full_name}</Text>
                     <View style = {{width: 8, height: 8, borderRadius: 4, backgroundColor: "gray", marginLeft: 10}}></View>
@@ -189,11 +195,23 @@ const Home = () => {
     }
   return (
     <SafeAreaView style = {styles.container}>
-       <FlatList
-            data={newsContents}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-       />
+       <Header isBack={false}/>
+       <View style = {styles.searchContainer}>
+        <TextInput 
+            style = {styles.searchInput}
+            placeholder='Haber başlığı ara'
+            placeholderTextColor={"gray"}        
+        />
+
+       </View>
+       <View style = {styles.newsContainer}>
+        <FlatList
+                data={newsContents}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id.toString()}
+        />
+       </View>
+      
     </SafeAreaView>
   )
 }
@@ -203,11 +221,31 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "white"
     },
+    searchContainer: {
+        width: PhoneWidth,
+        height: PhoneHeight * 0.1,
+        borderWidth: 0,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    searchInput: {
+        borderRadius: 20,
+        width: PhoneWidth * 0.9,
+        backgroundColor: "#e3e3e3",
+        height: "70%",
+        fontSize: 16,
+        fontStyle: "italic",
+        paddingLeft: 10 
+    },
     newsContainer: {
+        height: PhoneHeight * 0.75, 
+        flex: 1
+    },
+    newsView: {
         backgroundColor: "white",
         borderRadius: 14,
         width: PhoneWidth * 0.9,
-        height: PhoneHeight * 0.25,
+        height: PhoneHeight * 0.35,
         alignSelf: "center",
         marginTop: 20,
         shadowColor: "#000",
@@ -222,7 +260,7 @@ const styles = StyleSheet.create({
     },
     img: {
         width: "100%", 
-        height: "40%", 
+        height: "35%", 
         borderTopLeftRadius: 14, 
         borderTopRightRadius: 14
     },
@@ -243,14 +281,20 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "bold",
         marginLeft: 10,
-        height: "20%",
+        height: "15%",
+        width: "95%"
+    },
+    excerptText: {
+        fontSize: 14,
+        color: "black",
+        marginLeft: 10,
+        height: "15%",
         width: "95%"
     },
     authorInfoView: {
-        borderWidth: 0,
         flexDirection: "row",
         width: "100%",
-        height: "20%",
+        height: "15%",
         borderBottomLeftRadius: 14,
         borderBottomRightRadius: 14,
         alignItems: "center",
