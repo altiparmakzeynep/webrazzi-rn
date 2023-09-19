@@ -1,12 +1,12 @@
 import { 
-    StyleSheet, 
     Text, 
     View,
     SafeAreaView,
     FlatList,
     Image,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    ActivityIndicator
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { fetchNews } from '../../actions/homeAction';
@@ -14,11 +14,11 @@ import { fetchNewsDetail } from '../../actions/newsDetailAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { NewsItem } from '../../reducers/homeReducer';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParams } from '../../../App';
-import { PhoneHeight, PhoneWidth } from '../../config';
 import Header from '../../components/Header/Header';
 import BottomBar from '../../components/BottomBar/BottomBar';
+import styles from "./styles";
 
 const Home = () => {
 
@@ -28,6 +28,7 @@ const Home = () => {
     const [filteredSearchData, setFilteredSearchData] = useState([]);
     const { newsContents } = useSelector((state: any) => state.homeReducer);
 
+    // news headers array for searching small array
     const newsHeaders: string[] = []
     newsContents.map((item: NewsItem) => newsHeaders.push(item.title))
 
@@ -82,6 +83,15 @@ const Home = () => {
             </TouchableOpacity>
         )  
     }
+
+    if(newsContents.length == 0){
+        return(
+            <SafeAreaView>
+                <ActivityIndicator style = {{width: 50, height: 50, alignSelf: "center"}}/>
+            </SafeAreaView>
+        )
+    }
+    console.log("haber uzunluğu", newsContents.length)
   return (
     <SafeAreaView style = {styles.container}>
        <Header isBack={false}/>
@@ -95,7 +105,7 @@ const Home = () => {
        </View>
        <View style = {styles.newsContainer}>
         <FlatList
-                data={filteredSearchData}
+                data={searchText.length > 0 ?  filteredSearchData : newsContents}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()}
         />
@@ -104,99 +114,4 @@ const Home = () => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white"
-    },
-    searchContainer: {
-        width: PhoneWidth,
-        height: PhoneHeight * 0.1,
-        borderWidth: 0,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    searchInput: {
-        borderRadius: 20,
-        width: PhoneWidth * 0.9,
-        backgroundColor: "#e3e3e3",
-        height: "70%",
-        fontSize: 16,
-        fontStyle: "italic",
-        paddingLeft: 10 
-    },
-    newsContainer: {
-        flex: 1
-    },
-    newsView: {
-        backgroundColor: "white",
-        borderRadius: 14,
-        width: PhoneWidth * 0.9,
-        height: PhoneHeight * 0.35,
-        alignSelf: "center",
-        marginTop: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-
-        elevation: 7
-    },
-    img: {
-        width: "100%", 
-        height: "35%", 
-        borderTopLeftRadius: 14, 
-        borderTopRightRadius: 14
-    },
-    categoriesView: {
-        width: PhoneWidth,
-        height: "20%",
-        borderWidth: 0,
-        flexDirection: "row",
-        alignItems: "center"
-    },
-    categoriesText: {
-        fontSize: 14,
-        color: "black",
-        marginLeft: 8,
-    },
-    headerText: {
-        fontSize: 16,
-        color: "black",
-        fontWeight: "bold",
-        marginLeft: 10,
-        height: "15%",
-        width: "95%"
-    },
-    excerptText: {
-        fontSize: 14,
-        color: "black",
-        marginLeft: 10,
-        height: "15%",
-        width: "95%"
-    },
-    authorInfoView: {
-        flexDirection: "row",
-        width: "100%",
-        height: "15%",
-        borderBottomLeftRadius: 14,
-        borderBottomRightRadius: 14,
-        alignItems: "center",
-    },
-    authorText: {
-        fontSize: 16,
-        color: "gray",
-        marginLeft: 10
-    },
-    dateText: {
-        fontSize: 16,
-        color: "gray",
-        marginLeft: 10
-    }
-})
-
 export default Home;

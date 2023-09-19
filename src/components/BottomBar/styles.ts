@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     bottomButtons: {
         width: PhoneWidth/4,
         height: "100%",
-        // backgroundColor: "black",
         alignItems: "center",
         justifyContent: "center",
     },
@@ -20,5 +19,4 @@ const styles = StyleSheet.create({
         height: 35
     }
   })
-
 export default styles;

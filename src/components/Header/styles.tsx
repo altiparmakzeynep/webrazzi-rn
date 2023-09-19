@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
       height: 50
     },
     webrazziLogo: {
-      width: 200,
-      height: 40,
+      width: 150,
+      height: 30,
+      // 1/5 rate because of rectangle png logo
       marginLeft: 20
     }
-  })
+})
 
-  export default styles;
+export default styles;
