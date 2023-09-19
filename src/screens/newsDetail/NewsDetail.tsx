@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchNewsDetail } from '../../actions/newsDetailAction';
 import { PhoneHeight, PhoneWidth } from '../../config';
 import Header from '../../components/Header/Header';
+import BottomBar from '../../components/BottomBar/BottomBar';
 
 type NewsDetailScreenRouteProp = RouteProp<RootStackParams, 'NewsDetail'>;
 
@@ -55,6 +56,7 @@ const NewsDetail: React.FC<Props> = ({route}) => {
         />
         <Text style = {styles.contentText}>{newsDetail?.content.replace(/<\/?[^>]+(>|$)/g, "")}</Text>
       </ScrollView>
+      <BottomBar/>
     </SafeAreaView>
   )
 }

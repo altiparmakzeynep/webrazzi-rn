@@ -35,13 +35,13 @@ export interface NewsItem {
   }
 
 interface NewsItemState {
-    newsContents: NewsItem[],
+    newsContents: NewsItem[]
 }
-
 interface FetchNewsAction {
     type: typeof FETCH_NEWS;
     payload: NewsItem[];
 };
+
 const INITIAL_STATE: NewsItemState = {
     newsContents: [],
 }
@@ -51,7 +51,7 @@ const homeReducer = (state = INITIAL_STATE, action: FetchNewsAction ) => {
         case FETCH_NEWS:
             return {
                 ...state,
-                newsContents: action.payload
+                newsContents: action.payload,
             }
         default:
             return state;
