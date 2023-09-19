@@ -59,8 +59,16 @@ const Home = () => {
         navigation.navigate("NewsDetail", {itemId: itemId})
         dispatch(fetchNewsDetail(itemId) as any)
     }
+    console.log("duru", filteredSearchData.length)
 
     const renderItem = ({ item }: { item: NewsItem }) => {
+
+        const publishedDate = new Date(item?.published_at);
+        const now = new Date();
+        const timeDiff = now.getTime() - publishedDate.getTime()
+        //basic math operations for convert => hours
+        const hoursDiff = timeDiff / (1000 * 60 * 60);
+
         return(
             <TouchableOpacity 
                 style = {styles.newsView}
@@ -77,8 +85,13 @@ const Home = () => {
 
                 <View style = {styles.authorInfoView}>
                     <Text style = {styles.authorText}>{item.author.full_name}</Text>
-                    <View style = {{width: 8, height: 8, borderRadius: 4, backgroundColor: "gray", marginLeft: 10}}></View>
-                    <Text style = {styles.dateText}>{(item.published_at).substring(0, 10)}</Text>
+                    <View style = {styles.dotView}></View>
+                    {
+                        Math.floor(hoursDiff) < 12 ?
+                        <Text style = {styles.dateText}>{Math.floor(hoursDiff)} saat önce</Text>
+                        :
+                        <Text style = {styles.dateText}>{item.published_at.substring(0,10)}</Text>
+                    }
                 </View>
             </TouchableOpacity>
         )  
@@ -91,7 +104,7 @@ const Home = () => {
             </SafeAreaView>
         )
     }
-    console.log("haber uzunluğu", newsContents.length)
+    
   return (
     <SafeAreaView style = {styles.container}>
        <Header isBack={false}/>
@@ -104,11 +117,11 @@ const Home = () => {
         />
        </View>
        <View style = {styles.newsContainer}>
-        <FlatList
+            <FlatList
                 data={searchText.length > 0 ?  filteredSearchData : newsContents}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()}
-        />
+            />
        </View>
        <BottomBar/>
     </SafeAreaView>

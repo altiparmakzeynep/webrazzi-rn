@@ -20,7 +20,7 @@ export default function BottomBar() {
 
     // I prepared the data, if it were used this scenario would happen.
     const buttons: ButtonsItem[] = [
-        {id: 1, icon: "https://cdn-icons-png.flaticon.com/512/4363/4363382.png", navigate: "Home"},
+        {id: 1, icon: "https://static-00.iconduck.com/assets.00/house-icon-512x471-t03b54sj.png", navigate: "Home"},
         {id: 2, icon: "https://cdn-icons-png.flaticon.com/512/3031/3031121.png", navigate: "Bookmark"},
         {id: 3, icon: "https://cdn-icons-png.flaticon.com/512/1827/1827504.png", navigate: "Notifications"},
         {id: 4, icon: "https://cdn-icons-png.flaticon.com/512/1144/1144760.png", navigate: "MyProfile"},

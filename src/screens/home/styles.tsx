@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     newsContainer: {
         flex: 1
     },
+    notFoundText: {
+        fontSize: 20, 
+        color: "black",
+        alignSelf: "center", 
+        fontStyle: "italic"
+    },
     newsView: {
         backgroundColor: "white",
         borderRadius: 14,
@@ -86,6 +92,14 @@ const styles = StyleSheet.create({
     authorText: {
         fontSize: 16,
         color: "gray",
+        marginLeft: 10
+    },
+    dotView: {
+        width: 8,
+        height: 8, 
+        borderRadius: 4, 
+        // this ratio for create "exact" circle, width and height = same, borderRadius = same/2
+        backgroundColor: "gray", 
         marginLeft: 10
     },
     dateText: {

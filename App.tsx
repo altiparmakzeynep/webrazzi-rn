@@ -80,8 +80,8 @@ function App(): JSX.Element {
     <Provider store={store}>
       <NavigationContainer>
         <RootStack.Navigator initialRouteName='Home'>
-          <RootStack.Screen name='Home' component={Home}/>
-          <RootStack.Screen name='NewsDetail' component={NewsDetail}/>
+          <RootStack.Screen name='Home' component={Home} options={{headerShown: false}}/>
+          <RootStack.Screen name='NewsDetail' component={NewsDetail} options={{headerShown: false}}/>
         </RootStack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -47,13 +47,20 @@ const styles = StyleSheet.create({
       width: 50,
       height: 50,
       borderRadius: 25,
-      borderWidth: 0,
     },
     authorText: {
       fontSize: 18,
+    
+      width: "60%",
       color: "#514b44",
       fontWeight: "500",
       marginLeft: 10
+    },
+    shareButton: {
+      width: "20%",
+      height: "70%",
+      alignItems: "center",
+      justifyContent: "center"
     },
     contentText: {
       fontSize: 20,
