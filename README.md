@@ -6,9 +6,6 @@ Uygulamayı geliştirirken, TypeScript, Hooks ve state yönetimi için Redux tek
 
 Anasayfada haberlerin listelenmesi kısmında sade, şık ve kullanıcı dostu bir tasarım kullanmaya özen gösterdim. Tasarımı kodlarken kalabalık CSS kodlarından kaçındım ve responsive bir tasarım kodlamaya çalıştım.
 
-![Simulator Screen Shot - iPhone 1](https://github.com/altiparmakzeynep/webrazzi-rn/assets/43657446/e00356f4-3a0f-4298-8ecd-92c756429787)   ![Simulator Screen Shot - iPhone 1-3](https://github.com/altiparmakzeynep/webrazzi-rn/assets/43657446/466823d0-ce29-4173-b28f-9fd1f69562d2)   ![Simulator Screen Shot - iPhone 1-2](https://github.com/altiparmakzeynep/webrazzi-rn/assets/43657446/2d93d73b-8471-4579-b95d-7df9b9cb3ab7)
-
-
 ## Sayfalar Arası Geçiş
 
 Uygulamanın sayfalar arası geçişleri ve sayfalar arası parametre aktarımını sağlamak için Navigation kütüphanesi kullandım.
