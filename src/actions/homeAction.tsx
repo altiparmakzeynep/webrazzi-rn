@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 
-export const FETCH_NEWS             = "fetch_news";
+export const FETCH_NEWS = "fetch_news";
 
 export const fetchNews = () => {
     return (dispatch: Dispatch) => {

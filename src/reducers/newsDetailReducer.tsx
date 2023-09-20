@@ -53,7 +53,6 @@ const INITIAL_STATE: NewsDetailItemState = {
 const newsDetailReducer = (state = INITIAL_STATE, action: FetchNewsDetailAction ) => {
     switch (action.type) {
         case FETCH_NEWS_DETAIL:
-          console.log("redppdpd", action.payload)
             return {
                 ...state,
                 newsDetail: action.payload

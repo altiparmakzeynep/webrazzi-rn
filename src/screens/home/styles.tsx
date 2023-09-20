@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     searchContainer: {
         width: PhoneWidth,
         height: PhoneHeight * 0.1,
-        borderWidth: 0,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
     categoriesView: {
         width: PhoneWidth,
         height: "20%",
-        borderWidth: 0,
         flexDirection: "row",
         alignItems: "center"
     },

@@ -43,12 +43,9 @@ const Home = () => {
     //search function
     const searchProduct = (txt: string) => {
         if (!txt) {
-            // Eğer kullanıcı hiçbir şey yazmamışsa, tüm içeriği göster
             setFilteredSearchData(newsContents);
         } else {
-            // Kullanıcının girdiği metni arayın
             const filteredData = newsContents.filter((item: { title: string; }) => {
-                // Başlığı küçük harfe çevirip, aranan metinle karşılaştırın
                 return item.title.toLowerCase().includes(txt.toLowerCase());
             });
             setFilteredSearchData(filteredData);
@@ -59,7 +56,6 @@ const Home = () => {
         navigation.navigate("NewsDetail", {itemId: itemId})
         dispatch(fetchNewsDetail(itemId) as any)
     }
-    console.log("duru", filteredSearchData.length)
 
     const renderItem = ({ item }: { item: NewsItem }) => {
 

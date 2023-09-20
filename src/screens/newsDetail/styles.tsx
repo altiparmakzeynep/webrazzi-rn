@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
       marginTop: 15,
       alignItems: "center",
       flexDirection: "row",
-      borderWidth: 0
     },
     authorImgView: {
       width: 60,
@@ -43,6 +42,12 @@ const styles = StyleSheet.create({
       marginLeft: 15,
       flexDirection: "row"
     },
+    newsPhoto: {
+      width: PhoneWidth * 0.95, 
+      height: PhoneHeight * 0.2, 
+      alignSelf: "center", 
+      borderRadius: 10
+    },
     authorImg: {
       width: 50,
       height: 50,
@@ -50,7 +55,6 @@ const styles = StyleSheet.create({
     },
     authorText: {
       fontSize: 18,
-    
       width: "60%",
       color: "#514b44",
       fontWeight: "500",

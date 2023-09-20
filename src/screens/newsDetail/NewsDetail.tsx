@@ -7,7 +7,7 @@ import {
   View,
   ActivityIndicator, 
   TouchableOpacity
-} from 'react-native'
+} from 'react-native';
 import React from 'react';
 import { RootStackParams } from '../../../App';
 import { RouteProp } from '@react-navigation/native';
@@ -90,7 +90,7 @@ const NewsDetail: React.FC<Props> = () => {
           </TouchableOpacity>
         </View>
         <Image 
-          style = {{width: PhoneWidth * 0.95, height: PhoneHeight * 0.2, alignSelf: "center", borderRadius: 10}}
+          style = {styles.newsPhoto}
           source = {{uri: newsDetail?.thumbnails?.full.url}}
         />
         <Text style = {styles.contentText}>{newsDetail?.content.replace(/<\/?[^>]+(>|$)/g, "")}</Text>
