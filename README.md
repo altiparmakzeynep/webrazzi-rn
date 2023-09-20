@@ -1,79 +1,30 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Kullanılan Teknolojiler
 
-# Getting Started
+Uygulamayı geliştirirken, TypeScript, Hooks ve state yönetimi için Redux teknolojilerini kullandım.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Tasarımın Kodlanması
 
-## Step 1: Start the Metro Server
+Anasayfada haberlerin listelenmesi kısmında sade, şık ve kullanıcı dostu bir tasarım kullanmaya özen gösterdim. Tasarımı kodlarken kalabalık CSS kodlarından kaçındım ve responsive bir tasarım kodlamaya çalıştım.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+![Simulator Screen Shot - iPhone 1](https://github.com/altiparmakzeynep/webrazzi-rn/assets/43657446/e00356f4-3a0f-4298-8ecd-92c756429787)   ![Simulator Screen Shot - iPhone 1-3](https://github.com/altiparmakzeynep/webrazzi-rn/assets/43657446/466823d0-ce29-4173-b28f-9fd1f69562d2)   ![Simulator Screen Shot - iPhone 1-2](https://github.com/altiparmakzeynep/webrazzi-rn/assets/43657446/2d93d73b-8471-4579-b95d-7df9b9cb3ab7)
 
-To start Metro, run the following command from the _root_ of your React Native project:
 
-```bash
-# using npm
-npm start
+## Sayfalar Arası Geçiş
 
-# OR using Yarn
-yarn start
-```
+Uygulamanın sayfalar arası geçişleri ve sayfalar arası parametre aktarımını sağlamak için Navigation kütüphanesi kullandım.
 
-## Step 2: Start your Application
+## API İsteği ve Verilerin Çekilmesi
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Anasayfada listelediğim haberleri ve haber detaylarını Case Study dökümanında paylaşılan endpointleri kullanarak axios kütüphanesi aracılığıyla fetch ettim. TypeScript ile kodlama yaptığım için listelerken kullanacağım verilerin tipi ve bunları doğru belirlemek benim için önemliydi. Bu nedenle endpointlere istek atmamı sağlayacak kodu yazmadan önce Postman uygulaması üzerinden gerekli testlerimi yaptım ve kullanacağım verinin tipini inceledim. Bu aşamada amacım kullanacağım verinin türüne uygun bir interface yazmaktı. Belirlediğim interface’e göre kullanacağım veriyi bir array’e doldurdum. Daha sonra kullanacağım array'in boyutuna uygun olduğunu düşündüğüm bir yöntemle haberleri listeledim. Bu tarz listelemelerde önemli olan uygulamanın performansını ve atılacak olan isteğin yaratacağı stresi doğru hesaplayabilmektir. Bu nedenle bu aşamada gerek görseydim ‘lazy-loading' yöntemi ile verimin tamamını listelemek yerine Örneğin; 10’ ar haber listeleyip kaydırma işlemi tamamlandığında tekrardan 10 adet haber için istek atılabilirdi. Tabii bu noktada kullanılacak olan API’ların da bu işleme uygun olması gerekmektedir. Ancak benim durumumda herhangi bir performans sorunu yaşamadım.
 
-### For Android
+## Haber Detayı Sayfası
 
-```bash
-# using npm
-npm run android
+Haber detayı listelerken ise karşılaştığım zorluklardan birisi basit bir lifecycle hatasıydı. İnternet hızı, telefon performansı gibi parametrelere bağlı olarak haber detaylarını fetch ederken verimin zamanında load olmaması sorunu yaşıyordum. Bu sorunu basit bir ‘null’ kontrolü yaparak ve sayfama ‘Activity Indicator’ özelliği ekleyerek çözdüm. Bu sayede herhangi bir sebeple data yüklenmediğinde kullanıcı data yükleme işlemi tamamlanana kadar bir loading simgesi görmekte. 
 
-# OR using Yarn
-yarn android
-```
+## Arama Modülünün Kodlanması
 
-### For iOS
+Bu temel işlevlerin yanı sıra uygulamada anasayfada üst kısımda bulunan bir arama input’u bulunmakta. Bu text input alanıyla kullanıcının klavyeden girdiği her harften sonra haber başlıkları içerisinde arama işlemi gerçekleştirdim. Bu sayede kullanım açısından keyifli bir arama işlemi sağlamış oldum. Ayrıca aramanın performanslı olması için de arama yapacağım başlık bilgilerini arama yapmadan önce harici bir array'de tutarak performans artışı sağlamış oldum.
 
-```bash
-# using npm
-npm run ios
+## Kod Okunurluğu ve Dinamik Kodlama
 
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Bu özelliklerin dışında kod okunurluğum ve uygulama performansı açısından component yapıları kullanmaya özen gösterdim. Header ve BottomBar gibi kısımları component olarak yazdım. Bu sayede dinamik olarak Header componentime yolladığım ‘isBack’ propsu sayesinde geriye dönme işlemi yapılabilecek senaryolarda ekranın header kısmında bir geri butonu olmasını sağladım. Bunu yaparken kodumun daha yalın ve anlaşılır olmasını hedefledim. Bu şekilde ‘Write Once Run Anywhere’  paradigmasını benimseyerek kodlamak performans, kod okunurluğu ve anlaşılabilirliği açısından oldukça faydalıdır.
