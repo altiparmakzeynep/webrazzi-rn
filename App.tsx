@@ -85,10 +85,6 @@ function App(): JSX.Element {
         </RootStack.Navigator>
       </NavigationContainer>
     </Provider>
-    
-    // <SafeAreaView style={backgroundStyle}>
-    //  <Text>djd</Text>
-    // </SafeAreaView>
   );
 }
 
