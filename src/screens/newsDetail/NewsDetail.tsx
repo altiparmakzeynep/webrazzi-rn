@@ -65,10 +65,13 @@ const NewsDetail: React.FC<Props> = () => {
       <Header isBack={true}/>
       <ScrollView>
         {
-          Math.floor(hoursDiff) < 12 ?
-            <Text style = {styles.categoriesText}>{newsDetail?.categories[0]?.title} | {Math.floor(hoursDiff)} saat önce</Text>
-          :
-            <Text style = {styles.categoriesText}>{newsDetail?.categories[0]?.title} | {newsDetail?.published_at.substring(0,10)}</Text>
+          Math.floor(hoursDiff) == 0 ?
+            <Text style = {styles.categoriesText}>{newsDetail?.categories[0]?.title} | Şimdi</Text>
+            :
+            Math.floor(hoursDiff) < 12 && Math.floor(hoursDiff) > 0 ?
+              <Text style = {styles.categoriesText}>{newsDetail?.categories[0]?.title} | {Math.floor(hoursDiff)} saat önce</Text>
+            :
+              <Text style = {styles.categoriesText}>{newsDetail?.categories[0]?.title} | {newsDetail?.published_at.substring(0,10)}</Text>
         }
         <Text style = {styles.headerText}>{newsDetail?.title}</Text>
         <Text style = {styles.summaryText}>{newsDetail?.summary}</Text>

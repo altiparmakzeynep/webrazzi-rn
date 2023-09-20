@@ -83,10 +83,13 @@ const Home = () => {
                     <Text style = {styles.authorText}>{item.author.full_name}</Text>
                     <View style = {styles.dotView}></View>
                     {
-                        Math.floor(hoursDiff) < 12 ?
-                        <Text style = {styles.dateText}>{Math.floor(hoursDiff)} saat önce</Text>
+                        Math.floor(hoursDiff) == 0 ?
+                            <Text style = {styles.dateText}>Şimdi</Text>
                         :
-                        <Text style = {styles.dateText}>{item.published_at.substring(0,10)}</Text>
+                            Math.floor(hoursDiff) < 12 && Math.floor(hoursDiff) > 0?
+                            <Text style = {styles.dateText}>{Math.floor(hoursDiff)} saat önce</Text>
+                            :
+                            <Text style = {styles.dateText}>{item.published_at.substring(0,10)}</Text>
                     }
                 </View>
             </TouchableOpacity>
